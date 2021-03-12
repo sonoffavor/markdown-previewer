@@ -1,9 +1,15 @@
 import React from "react";
+import { MdZoomOutMap } from "react-icons/md";
+import { MdFullscreenExit } from "react-icons/md";
 
 function Editor() {
     return (
-        <div>
-            <h1>Editor</h1>
+        <div id="editor-window">
+            <p class="window-heading">Editor</p>
+            <textarea id="'editor" rows="22">
+            
+
+            </textarea>
         </div>
     );
 }

@@ -2,8 +2,8 @@ import React from "react";
 
 function Previewer() {
     return (
-        <div>
-            <h1>Previewer</h1>
+        <div id="preview-window">
+            <p class="window-heading">Previewer</p>
         </div>
     );
 }
