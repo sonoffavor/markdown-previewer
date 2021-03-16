@@ -63,6 +63,15 @@ textarea {
     margin: 0;      
 }
 
+#zoom-out-icon {
+    position: relative;
+    float: right;
+    margin-right: 8px;
+}
+
+#zoom-out-icon:hover {
+    color: #bbbfca;
+}
 
 /* Preview */
 #preview-window {

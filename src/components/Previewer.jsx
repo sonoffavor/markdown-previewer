@@ -3,7 +3,7 @@ import React from "react";
 function Previewer() {
     return (
         <div id="preview-window">
-            <p class="window-heading">Previewer</p>
+            <div className="window-heading">Previewer</div>
         </div>
     );
 }
