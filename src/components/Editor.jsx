@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faArrowsAlt, faCompress } from "@fortawesome/free-solid-svg-icons";
+import { faArrowsAlt, faCompress, faWindowMinimize, faWindowMaximize } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-library.add(faArrowsAlt, faCompress)
+library.add(faArrowsAlt, faCompress, faWindowMinimize, faWindowMaximize)
 
 function Editor(props) {
     const [isExpanded, setExpanded] = useState(false);
     const [expandedWidth, setExpandedWidth] = useState("80%");
+    const [minimizeWindow, setMinimizeWindow] = useState(false);
     const [markdown, setMarkdown] = useState(
         "# Welcome to my React Markdown Previewer!\n\n" +
         "## This is a sub-heading... \n" + 
@@ -21,40 +22,44 @@ function Editor(props) {
         "  return multiLineCode;\n" + 
         " }\n" + 
         "}\n" + 
-        "```\n\n\n" + 
-        "You can also make text **bold**... whoa! \n" + 
-        "Or _italic_. \n" + 
-        "Or... wait for it... **_both!_** \n" + 
+        "```\n\n" + 
+        "You can also make text **bold**... whoa!  \n" + 
+        "Or _italic_.  \n" + 
+        "Or... wait for it... **_both!_**  \n" + 
         "And feel free to go crazy ~~crossing stuff out~~.\n\n" + 
         "There's also [links](https://www.freecodecamp.com), and\n" +
-        "> Block Quotes!\n\n" + 
+        "> Block Quotes! \n\n" + 
         "And if you want to get really crazy, even tables:\n\n" +
-        "Wild Header | Crazy Header | Another Header?\n" + 
-        "------------ | ------------- | -------------\n" + 
-        "Your content can | be here, and it | can be here....\n" + 
-        "And here. | Okay. | I think we get it.\n\n" + 
+        "Wild Header |  Crazy Header | Another Header  \n" + 
+        "------------ | ------------- | -------------  \n" + 
+        "Your content can | be here, and it | can be here....  \n" + 
+        "And here. | Okay. | I think we get it.  \n" + 
         "- And of course there are lists.\n" + 
-        " - Some are bulleted.\n" + 
-        "  - With different indentation levels.\n" +
-        "   - That look like this.\n\n\n" + 
+        "\t- Some are bulleted.\n" + 
+        "\t\t- With different indentation levels.\n" +
+        "\t\t- That look like this.\n\n\n" + 
         "1. And there are numbererd lists too.\n" + 
         "1. Use just 1s if you want!\n" + 
         "1. And last but not least, let's not forget embedded images:\n\n" +
         "![React Logo w/ Text](https://goo.gl/Umyytc)\n");
 
-    const matches = useMediaQuery('(min-width: 1367px)');
-
+    // minWidth is used in calculating expandedWidth state
+    const minWidth = useMediaQuery('(min-width: 1367px)');
+    const maxWidth = useMediaQuery('(max-width: 768px)');
+    
+    // useEffect preloads markdown state when website starts
     useEffect(() => props.onChange(markdown));
 
+    // handleChange responds to change in textarea
     function handleChange(event) {
         const text = event.target.value;
         setMarkdown(text);
         props.onChange(markdown);
     }
 
-    function expand() {
-
-        if (matches) {
+    // hideShowExapandToggle sets expanded and expandedWidth states
+    function hideShowExpandToggle() {
+        if (minWidth) {
             setExpandedWidth("60%");
         } else {
             setExpandedWidth("80%");
@@ -67,23 +72,41 @@ function Editor(props) {
         }
     }
 
-   
+    // hideShowMinMaxToggle sets minimizeWindow state
+    function hideShowMinMaxToggle() {
+        if (minimizeWindow) {
+            setMinimizeWindow(false);
+        } else {
+            setMinimizeWindow(true);
+        }
+
+    }
 
     return (
         <div id="editor-window" style={{width: isExpanded !== false  && expandedWidth}}>
             <div className="window-heading">Editor
-                <div id="editor-toggle">
+                <div id="expand-toggle-wrapper" style={{display: minimizeWindow === true || maxWidth === true ? "none" : "block"}}>
                     <FontAwesomeIcon 
                         icon={faArrowsAlt} 
-                        id="editor-toggle"
                         style={{display: isExpanded !== true ? "block" : "none"}}
-                        onClick={expand}       
+                        onClick={hideShowExpandToggle}       
                     />
                     <FontAwesomeIcon
                         icon={faCompress}
-                        id="editor-toggle"
                         style={{display: isExpanded === true ? "block" : "none"}}
-                        onClick={expand}
+                        onClick={hideShowExpandToggle}
+                    />
+                </div>
+                <div id="min-max-toggle-wrapper">
+                    <FontAwesomeIcon 
+                        icon={faWindowMinimize}
+                        style={{display: minimizeWindow !== true ? "block" : "none"}}
+                        onClick={hideShowMinMaxToggle}
+                    />
+                    <FontAwesomeIcon
+                        icon={faWindowMaximize}
+                        style={{display: minimizeWindow === true ? "block" : "none"}}
+                        onClick={hideShowMinMaxToggle}
                     />
                 </div>
             </div>
@@ -93,6 +116,7 @@ function Editor(props) {
                 rows="22" 
                 onChange={handleChange}
                 defaultValue={markdown}
+                style={{display: minimizeWindow !== true ? "block" : "none"}}
             >
             </textarea>
         </div>
