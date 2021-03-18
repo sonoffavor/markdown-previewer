@@ -1,0 +1,192 @@
+body {
+    background: #bbbfca;
+    margin: 0;
+}
+
+html {
+    margin-top: 60px;
+}
+
+/* Header */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #495464;
+    font-size: 0.9rem;
+    margin: 0;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    margin: 0;
+}
+
+
+/* Window Headings */
+.window-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size:  1.2rem;
+    font-weight: 700;
+    background-color: #e8e8e8;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    margin: 0;
+}
+
+/* Editor */
+#editor-window {
+    width: 55%;
+    border: 0.1rem solid;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 8px 8px 7px rgba(0, 0, 0, 0.3);
+
+}
+
+textarea {
+    width: 100%;
+    /* Safari/Chrome, other WebKit */
+    -webkit-box-sizing: border-box;
+    /* Firefox, other Gecko */  
+    -moz-box-sizing: border-box;
+    /* Opera/IE 8+ */    
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 5px;
+    border: 0;
+    resize: none;
+    margin: 0;     
+}
+
+#expand-toggle-wrapper {
+    position: relative;
+    float: right;
+    margin-right: 8px;
+    margin-top: 1px;
+}
+
+#expand-toggle-wrapper:hover {
+    color: #bbbfca;
+}
+
+#min-max-toggle-wrapper {
+    position: relative;
+    float: right;
+    margin-right: 8px;
+    margin-top: 1px;
+}
+
+#min-max-toggle-wrapper:hover {
+    color: #bbbfca;
+}
+
+/* Preview Window */
+#preview-window {
+    width: 80%;
+    border: 0.1rem solid;
+    margin-top: 15px;
+    background-color: white;
+    box-shadow: 8px 8px 7px rgba(0, 0, 0, 0.3);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Preview */
+#preview {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 10px;
+}
+
+code {
+    background-color: #e8e8e8;
+    padding: 2px 5px;
+}
+
+pre {
+    background-color: #e8e8e8;
+    border-left-style: solid;
+    border-color: rgb(32,48, 140);
+    border-width: 4px;
+    overflow-x: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+blockquote {
+    border-left-style: solid;
+    border-width: 4px;
+    border-color: #495464;
+    padding-left: 10px;
+    color: #495464;
+}
+
+table, th, td {
+    border: 2px solid #495464;
+    border-spacing: 0;
+}
+
+table td {
+    padding: 5px 10px;
+
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+footer p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*** Media Queries ***/
+
+/*
+    Link to common screen sizes
+    https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/
+*/
+
+/* Mobile Devices, iPads, & Tablets Screen Sizes */
+@media only screen and (max-width: 768px) {
+    #preview-window {
+        width: 95%;
+    }
+
+    #editor-window {
+        width: 95%;
+    }
+}
+
+/* Adjusted Nav H1 for Small Mobile Devices*/
+@media only screen and (max-width: 320px) {
+    header h1 {
+       font-size: 1.6rem;
+    }
+
+}
+
+/* Large Screens, Extra Large Screens, & TV */
+@media only screen and (min-width: 1367px) {
+    #preview-window {
+        max-width: 60%;
+    }
+
+    #editor-window {
+        width: 40%;
+    }
+}
+
+
+
