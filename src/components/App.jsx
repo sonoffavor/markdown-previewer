@@ -6,11 +6,17 @@ import Editor from "./Editor.jsx";
 import Previewer from "./Previewer.jsx";
 
 function App() {
+    const [newMarkdown, setNewMarkdown] = useState("");
+
+    function updateMarkdown(markdown) {
+        setNewMarkdown(markdown);
+    }
+
     return (
         <div>
             <Header />
-            <Editor />
-            <Previewer />
+            <Editor onChange={updateMarkdown}/>
+            <Previewer markdown={newMarkdown}/>
             <Footer />
         </div>
     );

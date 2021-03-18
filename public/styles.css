@@ -43,7 +43,7 @@ header h1 {
 
 /* Editor */
 #editor-window {
-    width: 60%;
+    width: 55%;
     border: 0.1rem solid;
     margin-left: auto;
     margin-right: auto;
@@ -58,18 +58,22 @@ textarea {
     /* Firefox, other Gecko */  
     -moz-box-sizing: border-box;
     /* Opera/IE 8+ */    
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 0;
+    border: 0;
     resize: none;
-    margin: 0;      
+    margin: 0;     
 }
 
-#zoom-out-icon {
+#editor-toggle {
     position: relative;
     float: right;
     margin-right: 8px;
+    margin-top: 1px;
 }
 
-#zoom-out-icon:hover {
+#editor-toggle:hover {
     color: #bbbfca;
 }
 
@@ -79,7 +83,6 @@ textarea {
     border: 0.1rem solid;
     margin-top: 15px;
     background-color: white;
-    height: 40rem;
     box-shadow: 8px 8px 7px rgba(0, 0, 0, 0.3);
     margin-right: auto;
     margin-left: auto;
@@ -87,9 +90,7 @@ textarea {
 }
 
 /* Footer */
-
 footer {
-    /* position: absolute; */
     text-align: center;
     bottom: 0;
     width: 100%;
@@ -99,3 +100,47 @@ footer {
 footer p {
     font-family: 'Open Sans', sans-serif;
 }
+
+/*** Media Queries ***/
+
+/*
+    Link to common screen sizes
+    https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/
+*/
+
+/* Mobile Devices, iPads, & Tablets Screen Sizes */
+@media only screen and (max-width: 768px) {
+    #preview-window {
+        width: 95%;
+    }
+
+    #editor-window {
+        width: 95%;
+    }
+
+    #editor-toggle {
+        display: none;
+    }
+}
+
+/* Adjusted Nav H1 for Small Mobile Devices*/
+@media only screen and (max-width: 320px) {
+    header h1 {
+       font-size: 1.6rem;
+    }
+
+}
+
+/* Large Screens, Extra Large Screens, & TV */
+@media only screen and (min-width: 1367px) {
+    #preview-window {
+        max-width: 60%;
+    }
+
+    #editor-window {
+        width: 40%;
+    }
+}
+
+
+
